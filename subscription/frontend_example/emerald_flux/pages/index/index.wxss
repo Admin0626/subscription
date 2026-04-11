@@ -1,0 +1,252 @@
+/* ========================================
+   The Fluid Minimalist - Index Page
+   ======================================== */
+
+/* 【1. 全局背景与容器】 */
+page {
+  background-color: #f9f9fb; /* surface */
+}
+
+.container {
+  padding: 0 16rpx; /* 严格遵守 16px 侧边距规则 */
+  min-height: 100vh;
+}
+
+/* 【2. 顶部 Header 区域】 */
+.header {
+  padding: 32rpx 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  background: #ffffff; /* surface_container_lowest */
+  border-radius: 12px; /* md */
+  padding: 24rpx;
+  margin-bottom: 24rpx; /* 用留白代替分割线 */
+  /* 移除边框，改用背景色区分 */
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  background: #f3f3f5;
+}
+
+.user-text {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 1rem; /* body-lg */
+  font-weight: 500;
+  color: #1a1c1d; /* on_surface */
+  margin-bottom: 4rpx;
+}
+
+.user-subtitle {
+  font-size: 0.875rem; /* body-md */
+  color: #6b6b6b; /* on_surface_variant */
+}
+
+/* 【3. 支出统计卡片】 */
+.stats-card {
+  background: #ffffff; /* surface_container_lowest */
+  border-radius: 12px; /* md */
+  padding: 32rpx 24rpx; /* 增加呼吸空间 */
+  margin-bottom: 24rpx;
+  /* 移除所有 box-shadow，改用背景色层级 */
+}
+
+.stats-title {
+  font-size: 0.875rem; /* body-md */
+  color: #6b6b6b; /* on_surface_variant */
+  margin-bottom: 8rpx;
+}
+
+.stats-amount {
+  font-size: 2.75rem; /* display-md */
+  font-weight: 700;
+  color: #1a1c1d; /* on_surface */
+  line-height: 1.2;
+}
+
+.stats-period {
+  font-size: 0.875rem; /* body-md */
+  color: #6b6b6b;
+  margin-top: 8rpx;
+}
+
+/* 月度/年度切换 Tabs */
+.stats-tabs {
+  display: flex;
+  margin-top: 24rpx;
+  gap: 12rpx;
+}
+
+.tab-item {
+  flex: 1;
+  padding: 16rpx 24rpx;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.875rem; /* body-md */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tab-item.inactive {
+  background: #f3f3f5; /* surface_container_low */
+  color: #6b6b6b;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #006d33 0%, #07c160 100%); /* 主按钮渐变 */
+  color: #ffffff;
+}
+
+.tab-item:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 【4. 订阅列表】 */
+.section-header {
+  font-size: 1.5rem; /* headline-sm */
+  font-weight: 600;
+  color: #1a1c1d; /* on_surface，禁止用纯黑 */
+  margin: 32rpx 0 16rpx 0; /* 不对称留白 */
+}
+
+.subscription-list {
+  background: transparent; /* 继承页面背景 */
+  /* 移除所有 border-bottom 分割线 */
+}
+
+.subscription-item {
+  background: #ffffff; /* surface_container_lowest */
+  border-radius: 12px; /* md */
+  padding: 24rpx;
+  margin-bottom: 16rpx; /* 用留白分隔 */
+  transition: all 0.2s ease;
+}
+
+.subscription-item:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+/* 紧急状态（即将到期） */
+.subscription-item.urgent {
+  background: #fff5f5; /* 浅红色调 */
+  border-left: 4rpx solid #ff3b30; /* 警示边框 */
+}
+
+.sub-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12px;
+  background: #f3f3f5;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.sub-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sub-name {
+  font-size: 1rem; /* body-lg */
+  font-weight: 500;
+  color: #1a1c1d; /* on_surface */
+  margin-bottom: 4rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sub-meta {
+  font-size: 0.875rem; /* body-md */
+  color: #6b6b6b; /* on_surface_variant */
+}
+
+.sub-price {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+
+.price-value {
+  font-size: 1rem; /* body-lg */
+  font-weight: 600;
+  color: #1a1c1d;
+}
+
+.price-period {
+  font-size: 0.75rem; /* label-sm */
+  color: #6b6b6b;
+  display: block;
+  margin-top: 4rpx;
+}
+
+/* 【5. 空状态】 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 0;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto 24rpx;
+  background: #f3f3f5;
+  border-radius: 50%;
+}
+
+.empty-text {
+  font-size: 1rem;
+  color: #6b6b6b;
+}
+
+/* 【6. 底部 TabBar】 */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16rpx 0 32rpx;
+  background: rgba(249, 249, 251, 0.85); /* surface 85% 透明度 */
+  backdrop-filter: blur(15px); /* 毛玻璃效果 */
+  /* 移除顶部 border-top */
+  z-index: 100;
+}
+
+.tab-item-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rpx 32rpx;
+}
+
+.tab-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 4rpx;
+  background: #f3f3f5;
+  border-radius: 8px;
+}
+
+.tab-label {
+  font-size: 0.75rem;
+  color: #6b6b6b;
+}
+
+.tab-label.active {
+  color: #006d33; /* primary */
+  font-weight: 500;
+}

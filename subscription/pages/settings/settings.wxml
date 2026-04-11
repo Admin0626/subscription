@@ -1,0 +1,73 @@
+<view class="container {{theme}}" style="--surface:{{theme === 'dark' ? '#121212' : '#f9f9fb'}};--on-surface:{{theme === 'dark' ? '#e8e8e8' : '#1a1c1d'}};--surface-container-low:{{theme === 'dark' ? '#1e1e1e' : '#f3f3f5'}};--surface-container-lowest:{{theme === 'dark' ? '#2c2c2e' : '#ffffff'}};--primary:{{theme === 'dark' ? '#00c853' : '#006d33'}};">
+  <!-- Back Button -->
+  <view class="back-btn">
+    <text class="back-icon">←</text>
+  </view>
+
+  <!-- User Card -->
+  <view class="user-card">
+    <view class="avatar">
+      <text style="font-size: 48rpx;">👤</text>
+    </view>
+    <view class="user-right">
+      <text class="nickname">{{userInfo.nickName}}</text>
+      <text class="user-id">ID: wx_user_001</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+
+  <!-- Stats Overview -->
+  <view class="stats-row">
+    <view class="stat-item">
+      <text class="stat-num">{{stats.activeCount}}</text>
+      <text class="stat-label">活跃订阅</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">¥{{stats.totalSpent}}</text>
+      <text class="stat-label">月总支出</text>
+    </view>
+  </view>
+
+  <!-- Settings List -->
+  <view class="list-group">
+    <view class="list-item">
+      <view class="item-left">
+        <text class="icon">🎨</text>
+        <text class="item-text">深色模式</text>
+      </view>
+      <switch class="theme-switch" checked="{{theme === 'dark'}}" bindchange="onThemeChange" color="var(--primary-container)"/>
+    </view>
+    <view class="list-item" bindtap="onExportData">
+      <view class="item-left">
+        <text class="icon">📤</text>
+        <text class="item-text">导出账单</text>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="onFeedback">
+      <view class="item-left">
+        <text class="icon">💬</text>
+        <text class="item-text">帮助与反馈</text>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- Danger Zone -->
+  <view class="list-group">
+    <view class="list-item" bindtap="onClearData">
+      <view class="item-left">
+        <text class="icon">🗑️</text>
+        <text class="danger-text">清空所有数据</text>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- Footer -->
+  <view class="footer">
+    <text>Version 1.0.0</text>
+  </view>
+
+  <view class="safe-area"></view>
+</view>

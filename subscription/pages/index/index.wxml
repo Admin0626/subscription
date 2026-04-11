@@ -1,0 +1,88 @@
+<view class="container {{theme}}" style="--surface:{{theme === 'dark' ? '#121212' : '#f9f9fb'}};--on-surface:{{theme === 'dark' ? '#e8e8e8' : '#1a1c1d'}};--surface-container-low:{{theme === 'dark' ? '#1e1e1e' : '#f3f3f5'}};--surface-container-lowest:{{theme === 'dark' ? '#2c2c2e' : '#ffffff'}};--primary:{{theme === 'dark' ? '#00c853' : '#006d33'}};">
+  <!-- Top Navigation -->
+  <view class="top-nav">
+    <view class="nav-left" bindtap="navToSettings">
+      <text class="nav-icon">👤</text>
+    </view>
+    <view class="nav-right" bindtap="navToSettings">
+      <text class="nav-icon">⚙️</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="main-scroll">
+    <!-- Summary Card -->
+    <view class="summary-card">
+      <view class="cycle-switch">
+        <view class="switch-inner">
+          <view class="switch-btn {{currentCycle === 'monthly' ? 'active' : ''}}" bindtap="switchCycle" data-cycle="monthly">月度</view>
+          <view class="switch-btn {{currentCycle === 'yearly' ? 'active' : ''}}" bindtap="switchCycle" data-cycle="yearly">年度</view>
+        </view>
+      </view>
+      <view class="summary-content">
+        <text class="summary-label">{{currentCycle === 'monthly' ? '月度支出' : '年度支出'}}</text>
+        <text class="summary-amount">¥{{totalAmount}}<text class="unit">{{currentCycle === 'monthly' ? '/月' : '/年'}}</text></text>
+        <view class="summary-meta">
+          <view class="meta-dot"></view>
+          <text class="meta-text">{{subscriptions.length}} 个有效订阅</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Expiring Soon -->
+    <view class="section" wx:if="{{expiringSoon.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">即将过期</text>
+        <text class="section-more">查看全部</text>
+      </view>
+      <scroll-view class="expiring-scroll" scroll-x="true">
+        <view class="expiring-list">
+          <view class="expiring-card {{item.daysClass}}" wx:for="{{expiringSoon}}" wx:key="id" bindtap="onItemTap" data-id="{{item.id}}">
+            <view class="card-header">
+              <view class="service-logo">
+                <text class="logo-text">{{item.name[0]}}</text>
+              </view>
+              <text class="days-tag {{item.daysClass}}">{{item.daysLeft}} 天后到期</text>
+            </view>
+            <text class="service-name">{{item.name}}</text>
+            <text class="service-price">¥{{item.price}}<text class="unit">/月</text></text>
+            <view class="progress-bar">
+              <view class="progress-fill {{item.daysClass}}" style="width: {{item.progress}}rpx;"></view>
+            </view>
+            <text class="billing-cycle">已用 {{item.billedDays}}/{{item.duration}} 天</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- All Subscriptions -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">全部订阅</text>
+      </view>
+      <view class="subscription-list">
+        <view class="subscription-item {{item.daysClass}}" wx:for="{{sortedList}}" wx:key="id" bindtap="onItemTap" data-id="{{item.id}}">
+          <view class="item-left">
+            <view class="item-logo">
+              <text class="logo-text">{{item.name[0]}}</text>
+            </view>
+            <view class="item-info">
+              <text class="item-name">{{item.name}}</text>
+              <text class="item-date">下次 {{item.nextDate}} 续费</text>
+            </view>
+          </view>
+          <view class="item-right">
+            <text class="item-price">¥{{item.price}}</text>
+            <text class="item-cycle">{{item.cycleText}}</text>
+          </view>
+        </view>
+
+        <!-- Empty State -->
+        <view class="empty" wx:if="{{sortedList.length === 0}}">
+          <text>暂无订阅，点击底部 + 添加</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="safe-area"></view>
+  </scroll-view>
+</view>

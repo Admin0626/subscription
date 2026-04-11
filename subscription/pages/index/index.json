@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "订阅用量记录",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {}
+}
