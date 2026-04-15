@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#00471f",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#410001",
+                    "surface-variant": "#e2e2e4",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#741c16",
+                    "surface-container-high": "#e8e8ea",
+                    "primary-container": "#07c160",
+                    "surface-container": "#eeeef0",
+                    "primary": "#006d33",
+                    "surface-container-highest": "#e2e2e4",
+                    "inverse-surface": "#2f3132",
+                    "inverse-on-surface": "#f0f0f2",
+                    "inverse-primary": "#45e17c",
+                    "tertiary-fixed": "#ffdad5",
+                    "tertiary-container": "#ff8475",
+                    "on-tertiary-fixed-variant": "#82261e",
+                    "background": "#f9f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f9f9fb",
+                    "on-surface-variant": "#3d4a3d",
+                    "secondary": "#2f6a3f",
+                    "tertiary": "#a23d33",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#45e17c",
+                    "secondary-fixed-dim": "#96d5a0",
+                    "on-secondary-container": "#357044",
+                    "on-primary-fixed-variant": "#005225",
+                    "secondary-fixed": "#b1f2bb",
+                    "on-secondary-fixed": "#00210b",
+                    "tertiary-fixed-dim": "#ffb4aa",
+                    "on-surface": "#1a1c1d",
+                    "surface-bright": "#f9f9fb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#66ff95",
+                    "surface-dim": "#d9dadc",
+                    "secondary-container": "#b1f2bb",
+                    "on-background": "#1a1c1d",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#135129",
+                    "surface-container-low": "#f3f3f5",
+                    "outline-variant": "#bbcbba",
+                    "on-primary-fixed": "#00210b",
+                    "surface-tint": "#006d33",
+                    "outline": "#6c7b6c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-nav { backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/85 dark:bg-slate-950/85 backdrop-blur-[15px] flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/10">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a young professional man with a friendly expression in a brightly lit modern office space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoq9V5YR4KgN1fMDkTF-6C8jJ2UeuB1dpGTIFEravPGT2L8MqtMng9ETl-13AjY0tlb5BKEVwwlA4e7N1HENod5H9LrDJIV02iK2vNglJ0UI-XFOEWavbfSnT0v8uzfSrbGPFb-pwb498THabsCRHN0FxDmEZvpMgMCzwxDRbqzv2cxe4CeTt77x4u-On1D4uok-lXds0JFvODKVnCw8ZY3M_IMcb9VXV4B_mbdWvGhOJ0a5SyXUlEf8SpAG-grXMzabUPgbVMK43u"/>
+</div>
+<h1 class="text-xl font-bold text-on-surface dark:text-on-surface-variant">Subscriptions</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400" data-icon="settings">settings</span>
+</button>
+</header>
+<main class="pt-20 px-4 space-y-8">
+<!-- Summary Card Section -->
+<section class="mt-4">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(26,28,29,0.04)] border border-outline-variant/5">
+<div class="flex justify-center mb-6">
+<div class="bg-surface-container-low p-1 rounded-lg flex w-full">
+<button class="flex-1 py-1.5 text-sm font-semibold bg-surface-container-lowest rounded-md shadow-sm text-on-surface transition-all">Monthly</button>
+<button class="flex-1 py-1.5 text-sm font-medium text-slate-500 hover:text-on-surface transition-colors">Annual</button>
+</div>
+</div>
+<div class="text-center space-y-1">
+<p class="text-on-surface-variant text-sm font-medium">Monthly Spending</p>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface">¥89<span class="text-xl font-bold text-on-surface-variant/60">/mo</span></h2>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-container/10 rounded-full mt-2">
+<div class="w-1.5 h-1.5 rounded-full bg-primary-container"></div>
+<span class="text-xs font-bold text-primary">5 Active Subscriptions</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Expiring Soon Carousel -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="headline-sm font-bold text-on-surface px-1">Expiring Soon</h3>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-4 no-scrollbar -mx-4 px-4 pb-2">
+<!-- Netflix Card -->
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_16px_rgba(26,28,29,0.03)] border-l-4 border-error">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center">
+<img alt="Netflix" class="w-6 h-6 object-contain" data-alt="logo of netflix streaming service on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDorjX3X-3giePB4TmO3NjOrFz8WhP908RHinkQuBE8uVkpZMiNDX5vC1F_5i4ZTFv23Sj3mGXqnS_qDm8qmLnzDO0O7YIEU5iiW5AUfZoTsLbjKbalkzklXB4e4b_kwmViLhuI_GI8m8TP2Gz7hkCNbfivNQtNr5jyKVHh47A2Lu6wh1mR7YplILiDRmS7-gm885bh6SQW_uUvBlMBF5WvnmoKJLxGM9wC0YUsO16ga6NFOfWbHOl2O8j-MHBBDa8huG9uggKTZg-e"/>
+</div>
+<span class="text-[10px] font-bold py-1 px-2 rounded-full bg-error/10 text-error">3 days left</span>
+</div>
+<div class="mb-4">
+<h4 class="font-bold text-on-surface">Netflix</h4>
+<p class="text-lg font-bold text-on-surface mt-1">¥68<span class="text-xs font-normal text-on-surface-variant">/mo</span></p>
+</div>
+<div class="space-y-1.5">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error w-[90%] rounded-full"></div>
+</div>
+<p class="text-[10px] font-medium text-on-surface-variant/60">Billing Cycle: 27/30 days</p>
+</div>
+</div>
+<!-- Spotify Card -->
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_16px_rgba(26,28,29,0.03)] border-l-4 border-tertiary-container">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center">
+<img alt="Spotify" class="w-6 h-6 object-contain" data-alt="vibrant spotify logo on a clean black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFprSjWSSfEuiojJCy09jpHjecVJHJWM7AI5OUkh1uaNfW891SI4e0CfKcdgvhi_iMNXrPNhNpP5hjM3UZDsmWZQJraBqyEroutvpVwDhg7Ta4MhuJIurPh9V3C1bRPMoQPGtlDSyvHOH5dRdoIhMxR71HocLpKGv--9rV_-emH1iivz87PAc5w2F0G-LYDDTAUWN5DAA1LhMJswxM3_xawc8pA3eq-xJrFIEXeVCtxctUs7XBfeyTSK3XL7-ERv6UDHNaIX4AJ0Pv"/>
+</div>
+<span class="text-[10px] font-bold py-1 px-2 rounded-full bg-tertiary-container/20 text-tertiary-container">6 days left</span>
+</div>
+<div class="mb-4">
+<h4 class="font-bold text-on-surface">Spotify</h4>
+<p class="text-lg font-bold text-on-surface mt-1">¥15<span class="text-xs font-normal text-on-surface-variant">/mo</span></p>
+</div>
+<div class="space-y-1.5">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-[80%] rounded-full"></div>
+</div>
+<p class="text-[10px] font-medium text-on-surface-variant/60">Billing Cycle: 24/30 days</p>
+</div>
+</div>
+<!-- iCloud Card -->
+<div class="flex-shrink-0 w-64 bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_16px_rgba(26,28,29,0.03)] border-l-4 border-primary-container">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
+<img alt="iCloud" class="w-6 h-6 object-contain" data-alt="apple icloud icon with stylized cloud graphic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2LzrH1a9yglvcux3zQKYQ4O_mtaFFUhQlv7QjinkeYxJ0RPjhuJ5ok3Xo_UCT3UKnCDX9pCORGg-jHh7QauHQzhm8GvOLIdCFt81vPFPnrYOmo85rtZ5dWMkznTmRM2s7WLNr5olEXmPHTiE4aeaqkTebzQR34ghuWhT2qtqccvmd76iXdg17vLN-Jf1Nm4ptWaDmQ10OgC6q8-uA3_ALbXblqmbKbn9gYXCAk3I_Eed6UFw2whcHRQ8KneoqWlsx170yZoEeoavt"/>
+</div>
+<span class="text-[10px] font-bold py-1 px-2 rounded-full bg-primary-container/10 text-primary">15 days left</span>
+</div>
+<div class="mb-4">
+<h4 class="font-bold text-on-surface">iCloud+ 50GB</h4>
+<p class="text-lg font-bold text-on-surface mt-1">¥6<span class="text-xs font-normal text-on-surface-variant">/mo</span></p>
+</div>
+<div class="space-y-1.5">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[50%] rounded-full"></div>
+</div>
+<p class="text-[10px] font-medium text-on-surface-variant/60">Billing Cycle: 15/30 days</p>
+</div>
+</div>
+</div>
+</section>
+<!-- All Subscriptions List -->
+<section class="pb-8">
+<h3 class="headline-sm font-bold text-on-surface px-1 mb-4">All Subscriptions</h3>
+<div class="space-y-3">
+<!-- Row 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center p-2">
+<img alt="YouTube Premium" class="w-full h-full object-contain" data-alt="youtube logo red circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoZh8-_nwfwOABtFs7v--HC6oVby02_XTNoG0aZZCTxU_a2VKuc9fmD_megQ5j46BpjnvqrAjX64bHcibaOKMAbvIWUoZ3SzbfQg5UJMfcjRPK8P4yn3GLtWkYTu4RVtSNvryRIE_NO8pdaw2GcQ2X_eqJXQ0aDkDhSNV1_Oy4pzxaJJk7sCgrn6hBJ028oqvdv61WSyWeNCV3AJcO-UnN_yrvxGJ9Mfb3F1pDfenglazkDRdyFwUMeL3xvOYA0E_skwGhAbYfr7_W"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">YouTube Premium</p>
+<p class="text-xs font-medium text-on-surface-variant/60">Renews Oct 12</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-on-surface">¥15</p>
+<p class="text-[10px] text-on-surface-variant/60">Monthly</p>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center p-2">
+<img alt="Duolingo" class="w-full h-full object-contain" data-alt="green duolingo bird mascot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnYl521Jmre9mFlGEPsNUQdqT-TUZPX2aPHiRchcCGD7Y4Aicyrq1mFIqyZicPyGuqV6fCqQsjbcZ4ubYW8kK9ESIlwrou2I1aosPoLfIrD06s24XMhC-UXhMn5iv-5UXiAsppvG5Ze-XiYF8sbUKoZULAda5SaFzwMBqXXzxI1PHYTjPi1WlQe1zhlCi3bvOO9SEKfVz7smcB_s4DaXab-wLwltVSwagr5o2ANkT9dMihE2EyZWxVW0V0PGHjvoIAaGfxe03Gvldv"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Duolingo Plus</p>
+<p class="text-xs font-medium text-on-surface-variant/60">Renews Oct 15</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-on-surface">¥58</p>
+<p class="text-[10px] text-on-surface-variant/60">Monthly</p>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 active:scale-[0.98] transition-transform opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center p-2 grayscale">
+<span class="material-symbols-outlined text-slate-400" data-icon="cloud">cloud</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Adobe CC</p>
+<p class="text-xs font-medium text-on-surface-variant/60">Renews Oct 22</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-on-surface">¥188</p>
+<p class="text-[10px] text-on-surface-variant/60">Monthly</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pb-safe px-6 bg-[#f9f9fb]/85 dark:bg-[#1a1c1d]/85 backdrop-blur-[15px] z-50 rounded-t-2xl shadow-[0_-4px_24px_rgba(0,0,0,0.04)] h-[84px]">
+<a class="flex flex-col items-center justify-center text-[#07C160] font-bold active:scale-90 transition-transform hover:bg-gray-100/50 dark:hover:bg-gray-800/50 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[11px] font-medium font-['Inter'] mt-1">Home</span>
+</a>
+<button class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:scale-90 transition-transform hover:bg-gray-100/50 dark:hover:bg-gray-800/50 p-2 rounded-xl">
+<span class="material-symbols-outlined text-4xl text-[#07C160]" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-[11px] font-medium font-['Inter'] mt-0.5">Add</span>
+</button>
+<a class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 active:scale-90 transition-transform hover:bg-gray-100/50 dark:hover:bg-gray-800/50 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[11px] font-medium font-['Inter'] mt-1">Stats</span>
+</a>
+</nav>
+</body></html>
