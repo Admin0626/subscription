@@ -1,19 +1,17 @@
 const app = getApp();
+const util = require('../../utils/util.js');
 
 Page({
   data: {
-    userInfo: { nickName: '微信用户', avatarUrl: '' },
     stats: { activeCount: 0, totalSpent: 0 },
-    theme: 'light'
-  },
-
-  onLoad() {
-    const theme = wx.getStorageSync('theme') || 'light';
-    this.setData({ theme: theme });
+    showDatePicker: false,
+    dateRangeType: 'all',
+    customStartDate: '',
+    customEndDate: '',
+    pickerRange: []
   },
 
   onShow() {
-    const theme = wx.getStorageSync('theme') || 'light';
     const subs = app.globalData.subscriptions || [];
     const totalSpent = subs.reduce((sum, item) => {
       const monthly = item.cycle === 'monthly' ? item.price : item.price / 12;
@@ -22,15 +20,128 @@ Page({
 
     this.setData({
       'stats.activeCount': subs.length,
-      'stats.totalSpent': totalSpent.toFixed(2),
-      theme: theme
+      'stats.totalSpent': totalSpent.toFixed(2)
     });
   },
 
-  onThemeChange(e) {
-    const newTheme = e.detail.value ? 'dark' : 'light';
-    this.setData({ theme: newTheme });
-    app.setTheme(newTheme);
+  onExportData() {
+    const subs = app.globalData.subscriptions || [];
+    if (subs.length === 0) {
+      wx.showToast({ title: '暂无数据可导出', icon: 'none' });
+      return;
+    }
+
+    const that = this;
+    wx.showActionSheet({
+      itemList: ['全部', '本月', '本季度', '本年', '自定义'],
+      success(res) {
+        const typeMap = ['all', 'month', 'quarter', 'year', 'custom'];
+        const selectedType = typeMap[res.tapIndex];
+
+        if (selectedType === 'custom') {
+          that.showCustomDatePicker();
+        } else {
+          that.doExport(selectedType);
+        }
+      }
+    });
+  },
+
+  showCustomDatePicker() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const today = `${year}-${month}-${day}`;
+
+    this.setData({
+      showDatePicker: true,
+      dateRangeType: 'custom',
+      customStartDate: `${year}-01-01`,
+      customEndDate: today
+    });
+  },
+
+  onPickerClose() {
+    this.setData({ showDatePicker: false });
+  },
+
+  onStartDateChange(e) {
+    this.setData({ customStartDate: e.detail.value });
+  },
+
+  onEndDateChange(e) {
+    this.setData({ customEndDate: e.detail.value });
+  },
+
+  onConfirmDate() {
+    const { customStartDate, customEndDate } = this.data;
+    if (new Date(customStartDate) > new Date(customEndDate)) {
+      wx.showToast({ title: '开始日期不能晚于结束日期', icon: 'none' });
+      return;
+    }
+    this.setData({ showDatePicker: false });
+    this.doExport('custom');
+  },
+
+  doExport(rangeType) {
+    wx.showLoading({ title: '正在生成...' });
+
+    const subs = app.globalData.subscriptions || [];
+    const allRecords = util.getAllPaymentRecords(subs);
+    
+    const customRange = rangeType === 'custom' ? {
+      startDate: this.data.customStartDate,
+      endDate: this.data.customEndDate
+    } : {};
+
+    const filteredRecords = util.filterRecordsByDateRange(allRecords, rangeType, customRange);
+
+    if (filteredRecords.length === 0) {
+      wx.hideLoading();
+      wx.showToast({ title: '所选范围内无扣费记录', icon: 'none' });
+      return;
+    }
+
+    const csvContent = util.generatePaymentCSV(filteredRecords);
+    const rangeLabel = util.getDateRangeLabel(rangeType, customRange);
+
+    const fileName = `账单_${rangeLabel}_${Date.now()}.csv`;
+    const filePath = `${wx.env.USER_DATA_PATH}/${fileName}`;
+
+    const fs = wx.getFileSystemManager();
+    
+    fs.writeFile({
+      filePath: filePath,
+      data: csvContent,
+      encoding: 'utf8',
+      success() {
+        wx.hideLoading();
+        wx.openDocument({
+          filePath: filePath,
+          fileType: 'csv',
+          success() {
+            wx.showToast({ title: '导出成功', icon: 'success' });
+          },
+          fail(err) {
+            wx.showToast({ title: '打开文件失败', icon: 'none' });
+          }
+        });
+      },
+      fail(err) {
+        wx.hideLoading();
+        wx.showToast({ title: '生成文件失败', icon: 'none' });
+      }
+    });
+  },
+
+  onFeedback() {
+    wx.setClipboardData({
+      data: 'zmfzsq2427280601',
+      success: () => {
+        wx.showToast({ title: '客服微信已复制', icon: 'success' });
+      }
+    });
   },
 
   onClearData() {
@@ -42,20 +153,8 @@ Page({
           wx.removeStorageSync('subscriptions');
           app.globalData.subscriptions = [];
           wx.showToast({ title: '已清空', icon: 'success' });
+          this.onShow();
         }
-      }
-    });
-  },
-
-  onExportData() {
-    wx.showToast({ title: '导出功能开发中', icon: 'none' });
-  },
-
-  onFeedback() {
-    wx.setClipboardData({
-      data: 'zmfzsq2427280601',
-      success: () => {
-        wx.showToast({ title: '客服微信已复制', icon: 'success' });
       }
     });
   },

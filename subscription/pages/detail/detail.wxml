@@ -1,13 +1,10 @@
-<view class="container {{theme}}" style="--surface:{{theme === 'dark' ? '#121212' : '#f9f9fb'}};--on-surface:{{theme === 'dark' ? '#e8e8e8' : '#1a1c1d'}};--surface-container-low:{{theme === 'dark' ? '#1e1e1e' : '#f3f3f5'}};--surface-container-lowest:{{theme === 'dark' ? '#2c2c2e' : '#ffffff'}};--primary:{{theme === 'dark' ? '#00c853' : '#006d33'}};">
-  <!-- Back Button -->
-  <view class="back-btn">
-    <text class="back-icon">←</text>
-  </view>
+<view class="container">
 
   <scroll-view scroll-y class="main-scroll">
     <!-- Header Section -->
     <view class="header">
-      <view class="service-logo">
+      <image class="service-logo" src="{{subscription.logoUrl}}" mode="aspectFit" wx:if="{{subscription.logoUrl}}"></image>
+      <view class="service-logo" style="background-color: {{subscription.logoBg}}" wx:else>
         <text class="logo-text">{{subscription.name[0]}}</text>
       </view>
       <text class="service-name">{{subscription.name}}</text>
@@ -42,7 +39,7 @@
         <text class="progress-text">{{daysUsed}}/{{subscription.duration}} 天</text>
       </view>
       <view class="progress-bar">
-        <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+        <view class="progress-fill" style="width: {{progressPercent * 6.9}}rpx; display: block;"></view>
       </view>
       <view class="progress-meta">
         <text class="meta-item">周期起始: {{currentCycleStart}}</text>
@@ -54,10 +51,10 @@
     <view class="history-section">
       <view class="history-header">
         <text class="history-title">扣费记录</text>
-        <text class="history-more">查看全部</text>
+        <text class="history-more" wx:if="{{hasMoreHistory}}" bindtap="onToggleHistory">{{showAllHistory ? '收起' : '查看全部'}}</text>
       </view>
       <view class="history-list">
-        <view class="history-item" wx:for="{{paymentHistory}}" wx:key="index">
+        <view class="history-item" wx:for="{{displayHistory}}" wx:key="index">
           <view class="history-left">
             <view class="history-icon">
               <text>📅</text>

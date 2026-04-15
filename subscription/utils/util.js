@@ -76,6 +76,97 @@ const getMonthlyAmount = (price, cycle) => {
   return cycle === 'monthly' ? price : (price / 12);
 };
 
+const getAllPaymentRecords = (subscriptions) => {
+  const records = [];
+  const now = new Date();
+
+  subscriptions.forEach(sub => {
+    if (!sub.startDate) return;
+    
+    const startDate = new Date(sub.startDate);
+    const duration = sub.duration || 30;
+
+    if (isNaN(startDate.getTime())) return;
+
+    let paymentDate = new Date(startDate);
+    while (paymentDate <= now) {
+      records.push({
+        name: sub.name,
+        date: paymentDate.toISOString().split('T')[0],
+        price: sub.price,
+        status: 'paid'
+      });
+      paymentDate.setDate(paymentDate.getDate() + duration);
+    }
+  });
+
+  records.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return records;
+};
+
+const filterRecordsByDateRange = (records, rangeType, customRange = {}) => {
+  const now = new Date();
+  let startDate, endDate;
+
+  const getMonthStart = (date) => new Date(date.getFullYear(), date.getMonth(), 1);
+  const getMonthEnd = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  const getQuarterStart = (date) => new Date(date.getFullYear(), Math.floor(date.getMonth() / 3) * 3, 1);
+  const getQuarterEnd = (date) => {
+    const quarterEndMonth = (Math.floor(date.getMonth() / 3) + 1) * 3 - 1;
+    return new Date(date.getFullYear(), quarterEndMonth, 0);
+  };
+  const getYearStart = (date) => new Date(date.getFullYear(), 0, 1);
+  const getYearEnd = (date) => new Date(date.getFullYear(), 11, 31);
+
+  switch (rangeType) {
+    case 'month':
+      startDate = getMonthStart(now);
+      endDate = getMonthEnd(now);
+      break;
+    case 'quarter':
+      startDate = getQuarterStart(now);
+      endDate = getQuarterEnd(now);
+      break;
+    case 'year':
+      startDate = getYearStart(now);
+      endDate = getYearEnd(now);
+      break;
+    case 'custom':
+      startDate = new Date(customRange.startDate);
+      endDate = new Date(customRange.endDate);
+      break;
+    default:
+      return records;
+  }
+
+  return records.filter(record => {
+    const recordDate = new Date(record.date);
+    return recordDate >= startDate && recordDate <= endDate;
+  });
+};
+
+const generatePaymentCSV = (records) => {
+  const header = '\uFEFF服务名称,扣费日期,金额,状态\n';
+  const rows = records.map(r => 
+    `${r.name},${r.date},${r.price.toFixed(2)},已支付`
+  ).join('\n');
+  return header + rows;
+};
+
+const getDateRangeLabel = (rangeType, customRange = {}) => {
+  const now = new Date();
+  const formatDate = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  
+  switch (rangeType) {
+    case 'all': return '全部';
+    case 'month': return '本月';
+    case 'quarter': return '本季度';
+    case 'year': return '本年';
+    case 'custom': return `${customRange.startDate} 至 ${customRange.endDate}`;
+    default: return '';
+  }
+};
+
 module.exports = {
   formatAmount,
   getCycleText,
@@ -83,5 +174,9 @@ module.exports = {
   getProgressPercent,
   formatDate,
   getMonthlyAmount,
-  getCurrentCycleInfo
+  getCurrentCycleInfo,
+  getAllPaymentRecords,
+  filterRecordsByDateRange,
+  generatePaymentCSV,
+  getDateRangeLabel
 };

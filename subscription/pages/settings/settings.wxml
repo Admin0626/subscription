@@ -1,21 +1,4 @@
-<view class="container {{theme}}" style="--surface:{{theme === 'dark' ? '#121212' : '#f9f9fb'}};--on-surface:{{theme === 'dark' ? '#e8e8e8' : '#1a1c1d'}};--surface-container-low:{{theme === 'dark' ? '#1e1e1e' : '#f3f3f5'}};--surface-container-lowest:{{theme === 'dark' ? '#2c2c2e' : '#ffffff'}};--primary:{{theme === 'dark' ? '#00c853' : '#006d33'}};">
-  <!-- Back Button -->
-  <view class="back-btn">
-    <text class="back-icon">←</text>
-  </view>
-
-  <!-- User Card -->
-  <view class="user-card">
-    <view class="avatar">
-      <text style="font-size: 48rpx;">👤</text>
-    </view>
-    <view class="user-right">
-      <text class="nickname">{{userInfo.nickName}}</text>
-      <text class="user-id">ID: wx_user_001</text>
-    </view>
-    <text class="arrow">›</text>
-  </view>
-
+<view class="container">
   <!-- Stats Overview -->
   <view class="stats-row">
     <view class="stat-item">
@@ -30,13 +13,6 @@
 
   <!-- Settings List -->
   <view class="list-group">
-    <view class="list-item">
-      <view class="item-left">
-        <text class="icon">🎨</text>
-        <text class="item-text">深色模式</text>
-      </view>
-      <switch class="theme-switch" checked="{{theme === 'dark'}}" bindchange="onThemeChange" color="var(--primary-container)"/>
-    </view>
     <view class="list-item" bindtap="onExportData">
       <view class="item-left">
         <text class="icon">📤</text>
@@ -51,22 +27,41 @@
       </view>
       <text class="arrow">›</text>
     </view>
-  </view>
-
-  <!-- Danger Zone -->
-  <view class="list-group">
-    <view class="list-item" bindtap="onClearData">
+    <view class="list-item danger" bindtap="onClearData">
       <view class="item-left">
         <text class="icon">🗑️</text>
         <text class="danger-text">清空所有数据</text>
       </view>
-      <text class="arrow">›</text>
     </view>
   </view>
 
   <!-- Footer -->
   <view class="footer">
-    <text>Version 1.0.0</text>
+    <text>Version 1.0.4</text>
+  </view>
+
+  <!-- Custom Date Picker Modal -->
+  <view class="picker-mask" wx:if="{{showDatePicker}}" bindtap="onPickerClose"></view>
+  <view class="picker-modal {{showDatePicker ? 'show' : ''}}">
+    <view class="picker-header">
+      <text class="picker-cancel" bindtap="onPickerClose">取消</text>
+      <text class="picker-title">选择日期范围</text>
+      <text class="picker-confirm" bindtap="onConfirmDate">确定</text>
+    </view>
+    <view class="picker-body">
+      <view class="picker-row">
+        <text class="picker-label">开始日期</text>
+        <picker mode="date" value="{{customStartDate}}" start="2020-01-01" end="2099-12-31" bindchange="onStartDateChange">
+          <view class="picker-value">{{customStartDate}}</view>
+        </picker>
+      </view>
+      <view class="picker-row">
+        <text class="picker-label">结束日期</text>
+        <picker mode="date" value="{{customEndDate}}" start="2020-01-01" end="2099-12-31" bindchange="onEndDateChange">
+          <view class="picker-value">{{customEndDate}}</view>
+        </picker>
+      </view>
+    </view>
   </view>
 
   <view class="safe-area"></view>

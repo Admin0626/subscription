@@ -10,13 +10,12 @@ Page({
     totalSpent: 0,
     currentCycleStart: '',
     paymentHistory: [],
-    theme: 'light'
+    showAllHistory: false,
+    displayHistory: [],
+    hasMoreHistory: false
   },
 
   onLoad(options) {
-    const theme = wx.getStorageSync('theme') || 'light';
-    this.setData({ theme: theme });
-
     const id = options.id;
 
     if (!id) {
@@ -65,6 +64,9 @@ Page({
       }
     }
 
+    const displayHistory = paymentHistory.slice(0, 3);
+    const hasMoreHistory = paymentHistory.length > 3;
+
     this.setData({
       subscription: item,
       nextDate,
@@ -72,15 +74,10 @@ Page({
       progressPercent,
       totalSpent,
       currentCycleStart,
-      paymentHistory
+      paymentHistory,
+      displayHistory,
+      hasMoreHistory
     });
-  },
-
-  onShow() {
-    const theme = wx.getStorageSync('theme') || 'light';
-    if (this.data.theme !== theme) {
-      this.setData({ theme: theme });
-    }
   },
 
   formatDateFull(date) {
@@ -90,14 +87,10 @@ Page({
     return `${year}年${month}月${day}日`;
   },
 
-  onThemeChangePage(theme) {
-    this.setData({ theme });
-  },
-
   onEdit() {
     const item = this.data.subscription;
     wx.navigateTo({
-      url: `/pages/add/add?id=${item.id}&name=${encodeURIComponent(item.name)}&price=${item.price}&cycle=${item.cycle}&startDate=${item.startDate}&reminder=${item.reminder ? 1 : 0}&logoUrl=${encodeURIComponent(item.logoUrl || '')}&logoBg=${encodeURIComponent(item.logoBg || '')}`
+      url: `/pages/edit/edit?id=${item.id}`
     });
   },
 
@@ -128,5 +121,13 @@ Page({
     setTimeout(() => {
       wx.navigateBack();
     }, 1500);
+  },
+
+  onToggleHistory() {
+    const { showAllHistory, paymentHistory, displayHistory } = this.data;
+    this.setData({
+      showAllHistory: !showAllHistory,
+      displayHistory: !showAllHistory ? paymentHistory : displayHistory.slice(0, 3)
+    });
   }
 });
