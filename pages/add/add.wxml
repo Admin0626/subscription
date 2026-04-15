@@ -1,0 +1,89 @@
+<view class="container">
+  <!-- Top Navigation -->
+  <view class="top-nav">
+    <view class="nav-spacer"></view>
+    <text class="nav-title">{{isEditing ? '编辑订阅' : '添加订阅'}}</text>
+    <view class="nav-cancel" bindtap="onCancel">取消</view>
+  </view>
+
+  <scroll-view scroll-y class="main-scroll">
+    <!-- Service Section -->
+    <view class="section">
+      <text class="section-title">服务</text>
+      <view class="search-box {{focused ? 'focused' : ''}}">
+        <input class="search-input" placeholder="搜索或输入服务名称" placeholder-style="color: var(--on-surface-variant)" bindinput="onInputChange" data-key="name" value="{{name}}" bindfocus="onSearchFocus" bindblur="onSearchBlur" />
+        <view class="search-clear" wx:if="{{name}}" bindtap="clearName">✕</view>
+      </view>
+
+      <!-- Quick Select -->
+      <scroll-view class="quick-scroll" scroll-x="true" enable-flex="true">
+        <view class="quick-list">
+          <view class="quick-item {{selectedService === item.name ? 'selected' : ''}}" wx:for="{{quickServices}}" wx:key="name" bindtap="selectQuickService" data-item="{{item}}">
+            <image class="quick-logo-img" src="{{item.logoUrl || ''}}" mode="aspectFit" wx:if="{{item.logoUrl && item.logoUrl !== ''}}"></image>
+            <view class="quick-logo" style="background-color: {{item.bgColor || '#f1f1f1'}}" wx:if="{{!item.logoUrl || item.logoUrl === ''}}">
+              <text class="quick-initial">{{item.label[0]}}</text>
+            </view>
+            <text class="quick-label">{{item.label}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- Billing Details Section -->
+    <view class="section">
+      <text class="section-title">付费详情</text>
+      
+      <!-- Cost Input -->
+      <view class="input-row">
+        <text class="input-label">费用</text>
+        <view class="cost-input-wrap">
+          <text class="cost-prefix">¥</text>
+          <input class="cost-input" type="digit" placeholder="0.00" placeholder-style="color: var(--on-surface-variant)" bindinput="onInputChange" data-key="price" value="{{price}}" />
+        </view>
+      </view>
+
+      <!-- Billing Cycle -->
+      <view class="input-row cycle-row">
+        <text class="input-label">付费周期</text>
+        <view class="cycle-picker-container">
+          <view class="cycle-picker {{cycle === 'monthly' ? 'active' : ''}}" bindtap="onCycleChange" data-value="monthly">月付</view>
+          <view class="cycle-picker {{cycle === 'yearly' ? 'active' : ''}}" bindtap="onCycleChange" data-value="yearly">年付</view>
+          <view class="cycle-picker {{cycle === 'quarterly' ? 'active' : ''}}" bindtap="onCycleChange" data-value="quarterly">季付</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Schedule Section -->
+    <view class="section">
+      <text class="section-title">计划</text>
+      
+      <!-- Date Picker -->
+      <view class="input-row date-row">
+        <text class="date-label">首次扣费日</text>
+        <picker mode="date" value="{{startDate}}" bindchange="onDateChange">
+          <view class="date-picker">
+            <text class="date-value">{{startDate}}</text>
+            <text class="arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- Reminder Toggle -->
+      <view class="input-row toggle-row">
+        <view class="toggle-info">
+          <text class="toggle-label">提醒</text>
+          <text class="toggle-hint">提前 1 天通知</text>
+        </view>
+        <switch class="toggle-switch" checked="{{reminder}}" bindchange="onReminderChange" color="var(--primary-container)"/>
+      </view>
+    </view>
+
+    <!-- Action Button -->
+    <view class="action-area">
+      <button class="btn-save" bindtap="onSubmit">{{isEditing ? '保存修改' : '保存订阅'}}</button>
+      <text class="secure-note">加密 & 安全</text>
+    </view>
+
+    <view class="safe-area"></view>
+  </scroll-view>
+</view>
