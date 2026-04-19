@@ -8,37 +8,6 @@
   box-sizing: border-box;
 }
 
-/* Safe Area Top - 导航栏安全区 */
-.safe-area-top {
-  height: calc(88rpx + env(safe-area-inset-top));
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  background-color: rgba(249, 249, 251, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-}
-
-/* TopAppBar */
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16rpx;
-  height: 112rpx;
-  background-color: var(--surface);
-  opacity: 0.85;
-  backdrop-filter: blur(30rpx);
-  -webkit-backdrop-filter: blur(30rpx);
-  box-sizing: border-box;
-}
 
 .user-section {
   display: flex;
@@ -73,7 +42,7 @@
 /* Main Scroll */
 .main-scroll {
   flex: 1;
-  padding: 160rpx 0 40rpx;
+  padding: 30rpx 0 40rpx;
   box-sizing: border-box;
 }
 
