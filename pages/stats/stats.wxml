@@ -1,7 +1,8 @@
-<view class="container">
+<view class="container {{pageClass}}" 
+  style="{{'--surface:' + (pageClass ? '#121212' : '#f9f9fb') + ';--surface-container-lowest:' + (pageClass ? '#1e1e20' : '#ffffff') + ';--on-surface:' + (pageClass ? '#e8e8e8' : '#1a1c1d') + ';--on-surface-variant:' + (pageClass ? '#98989d' : '#8a8a8a') + ';background-color:' + (pageClass ? '#121212' : '#f9f9fb') + ';color:' + (pageClass ? '#e8e8e8' : '#1a1c1d')}}">
   <scroll-view scroll-y class="main-scroll">
     <!-- Header Section -->
-    <view class="header-section">
+    <view class="header-section {{pageClass}}">
       <view class="header-top">
         <text class="header-title">支出概览</text>
         <view class="tab-switch">
@@ -59,7 +60,8 @@
       <view class="top-list">
         <view class="top-item" wx:for="{{topSubscriptions}}" wx:key="id">
           <view class="top-logo">
-            <text class="logo-text">{{item.initial}}</text>
+            <image wx:if="{{item.logoUrl}}" class="logo-img" src="{{item.logoUrl}}" mode="aspectFit"></image>
+            <text wx:else class="logo-text">{{item.initial}}</text>
           </view>
           <view class="top-info">
             <view class="top-name-row">

@@ -1,11 +1,19 @@
+/* page.dark 作用域生效 */
+page.dark .container {
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--surface);
+  color: var(--on-surface);
   padding: 0 16rpx;
   box-sizing: border-box;
   padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* User Card */
@@ -49,6 +57,11 @@
   font-size: 1.25rem;
   color: var(--on-surface-variant);
   font-weight: 300;
+}
+
+.theme-status {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
 }
 
 /* Stats Row */
@@ -147,7 +160,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--mask-bg);
   z-index: 100;
 }
 

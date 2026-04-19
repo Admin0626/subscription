@@ -3,6 +3,7 @@ const util = require('../../utils/util.js');
 
 Page({
   data: {
+    pageClass: '',
     subscriptions: [],
     sortedList: [],
     currentCycle: 'monthly',
@@ -14,11 +15,18 @@ Page({
   },
 
   onLoad() {
+    this.syncTheme();
     this.loadData();
   },
 
   onShow() {
+    this.syncTheme();
     this.loadData();
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ pageClass: theme === 'dark' ? 'dark' : '' });
   },
 
   loadData() {

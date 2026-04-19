@@ -2,6 +2,7 @@ const app = getApp();
 
 Page({
   data: {
+    pageClass: '',
     subscriptionId: null,
     name: '',
     price: '',
@@ -31,6 +32,7 @@ Page({
   },
 
   onLoad(options) {
+    this.syncTheme();
     const id = options.id;
     if (!id) {
       wx.showToast({ title: '参数缺失', icon: 'none' });
@@ -64,6 +66,15 @@ Page({
       logoBg: item.logoBg || '#f1f1f1',
       selectedService: item.name || ''
     });
+  },
+
+  onShow() {
+    this.syncTheme();
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ pageClass: theme === 'dark' ? 'dark' : '' });
   },
 
   onInputChange(e) {

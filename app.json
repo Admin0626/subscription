@@ -8,12 +8,13 @@
     "pages/settings/settings"
   ],
   "window": {
-    "navigationBarTitleText": "订阅用量记录",
+    "navigationBarTitleText": "简订Pro",
     "navigationBarBackgroundColor": "#f9f9fb",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f9f9fb",
     "backgroundTextStyle": "dark"
   },
+  "darkmode": true,
   "tabBar": {
     "color": "#86868B",
     "selectedColor": "#07C160",

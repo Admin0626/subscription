@@ -1,4 +1,16 @@
-<view class="container">
+<view class="container {{pageClass}}" 
+  style="{{'--surface:' + (theme === 'dark' ? '#121212' : '#f9f9fb') + ';--surface-container-lowest:' + (theme === 'dark' ? '#1e1e20' : '#ffffff') + ';--on-surface:' + (theme === 'dark' ? '#e8e8e8' : '#1a1c1d') + ';--on-surface-variant:' + (theme === 'dark' ? '#98989d' : '#8a8a8a') + ';--surface:' + (theme === 'dark' ? '#121212' : '#f9f9fb') + ';background-color:' + (theme === 'dark' ? '#121212' : '#f9f9fb') + ';color:' + (theme === 'dark' ? '#e8e8e8' : '#1a1c1d')}}">
+  <!-- Theme Toggle -->
+  <view class="list-group">
+    <view class="list-item" bindtap="onToggleTheme">
+      <view class="item-left">
+        <text class="icon">{{theme === 'dark' ? '🌙' : '☀️'}}</text>
+        <text class="item-text">深色模式</text>
+      </view>
+      <text class="theme-status">{{theme === 'dark' ? '已开启' : '已关闭'}}</text>
+    </view>
+  </view>
+
   <!-- Stats Overview -->
   <view class="stats-row">
     <view class="stat-item">

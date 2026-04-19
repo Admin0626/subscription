@@ -12,6 +12,7 @@ const CATEGORY_CN = {
 
 Page({
   data: {
+    pageClass: '',
     activeTab: 'month',
     subscriptions: [],
     totalSpending: '0',
@@ -27,11 +28,18 @@ Page({
   },
 
   onLoad() {
+    this.syncTheme();
     this.calculate();
   },
 
   onShow() {
+    this.syncTheme();
     this.calculate();
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ pageClass: theme === 'dark' ? 'dark' : '' });
   },
 
   calculate() {
@@ -75,8 +83,9 @@ Page({
         duration,
         monthly: cycle === 'monthly' ? price : (cycle === 'yearly' ? price / 12 : price / 3),
         initial: item.name ? item.name[0] : '?',
-        color: COLORS[idx % COLORS.length],
-        colorLight: COLORS[idx % COLORS.length] + '80'
+        bgColor: item.logoBg || item.bgColor,
+        color: item.logoBg || item.bgColor || COLORS[idx % COLORS.length],
+        colorLight: (item.logoBg || item.bgColor || COLORS[idx % COLORS.length]) + '80'
       };
     });
 
@@ -211,8 +220,8 @@ Page({
           ...sub,
           monthly: value.toFixed(0),
           percent: percent.toFixed(0),
-          color: COLORS[idx % COLORS.length],
-          colorLight: COLORS[idx % COLORS.length] + '80'
+          color: sub.bgColor || (COLORS[idx % COLORS.length]),
+          colorLight: (sub.bgColor || COLORS[idx % COLORS.length]) + '80'
         };
       });
 

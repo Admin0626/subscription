@@ -2,6 +2,7 @@ const app = getApp();
 
 Page({
   data: {
+    pageClass: '',
     editId: null,
     name: '',
     price: '',
@@ -40,6 +41,7 @@ Page({
   },
 
   onLoad(options) {
+    this.syncTheme();
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -72,6 +74,12 @@ Page({
   },
 
   onShow() {
+    this.syncTheme();
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ pageClass: theme === 'dark' ? 'dark' : '' });
   },
 
   onInputChange(e) {

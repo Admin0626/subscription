@@ -22,10 +22,226 @@ page {
   --insight-bg: #FFF9E6;
   --insight-border: #FFD54F;
   --insight-text: #7F6000;
+  --mask-bg: rgba(0, 0, 0, 0.5);
+  --accent-gradient: linear-gradient(135deg, #006d33 0%, #07c160 100%);
+  --segment-inactive-bg: #f0f0f0;
+  --segment-inactive-text: #8e8e93;
   background-color: var(--surface);
   color: var(--on-surface);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
+
+page.dark {
+  --surface: #121212;
+  --surface-container-low: #2c2c2e;
+  --surface-container-lowest: #1e1e20;
+  --surface-container: #232426;
+  --surface-container-high: #2a2a2d;
+  --on-surface: #e8e8e8;
+  --on-surface-variant: #98989d;
+  --primary: #00c853;
+  --primary-container: #004d24;
+  --on-primary: #000000;
+  --secondary: #4cd964;
+  --secondary-container: #003d16;
+  --tertiary: #ff6b6b;
+  --tertiary-container: #5d1f1f;
+  --error: #ff6b6b;
+  --error-container: #5d1f1f;
+  --outline: #5c5c5c;
+  --outline-variant: rgba(255, 255, 255, 0.1);
+  --insight-bg: rgba(255, 221, 0, 0.15);
+  --insight-border: #b8860b;
+  --insight-text: #ffd54f;
+  --mask-bg: rgba(0, 0, 0, 0.7);
+  --accent-gradient: linear-gradient(135deg, #004d24 0%, #00c853 100%);
+  --segment-inactive-bg: #1a1a1a;
+  --segment-inactive-text: #98989d;
+  background-color: #121212;
+}
+
+page.dark .container {
+  background-color: #121212;
+  color: #e8e8e8;
+}
+
+/* Dark mode - index page top nav */
+page.dark .top-nav {
+  background-color: #121212;
+  color: #e8e8e8;
+}
+
+page.dark .nav-title {
+  color: #e8e8e8;
+}
+
+page.dark .nav-icon {
+  opacity: 0.9;
+}
+
+/* Dark mode - Tab switch */
+page.dark .switch-inner {
+  background-color: #2c2c2e;
+}
+
+page.dark .switch-btn {
+  color: #98989d;
+}
+
+page.dark .switch-btn.active {
+  background: linear-gradient(135deg, #004d24 0%, #00c853 100%);
+  color: #ffffff;
+}
+
+/* Dark mode - stats page */
+page.dark .header-section,
+page.dark .hero-card,
+page.dark .category-card,
+page.dark .top-item,
+page.dark .empty-state,
+page.dark .tab-switch {
+  background-color: #1e1e20;
+}
+
+page.dark .header-title,
+page.dark .header-date,
+page.dark .hero-label,
+page.dark .hero-amount {
+  color: #e8e8e8;
+}
+
+page.dark .tab-btn {
+  color: #98989d;
+}
+
+page.dark .tab-btn.active {
+  background: linear-gradient(135deg, #004d24 0%, #00c853 100%);
+  color: #ffffff;
+}
+
+/* Dark mode child elements */
+page.dark .stats-row,
+page.dark .list-group,
+page.dark .list-item,
+page.dark .stat-item,
+page.dark .picker-modal,
+page.dark .picker-row {
+  background-color: #1e1e20;
+  color: #e8e8e8;
+}
+
+page.dark .arrow,
+page.dark .footer text,
+page.dark .stat-label,
+page.dark .picker-label,
+page.dark .theme-status {
+  color: #98989d;
+}
+
+page.dark .list-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode for index page */
+page.dark .summary-card,
+page.dark .expiring-card,
+page.dark .subscription-item,
+page.dark .section,
+page.dark .top-nav,
+page.dark .item-left,
+page.dark .item-right {
+  background-color: #1e1e20;
+  color: #e8e8e8;
+}
+
+page.dark .item-name,
+page.dark .item-date,
+page.dark .item-price,
+page.dark .item-cycle,
+page.dark .summary-label,
+page.dark .summary-amount,
+page.dark .nav-title {
+  color: #e8e8e8;
+}
+
+page.dark .meta-text,
+page.dark .section-title {
+  color: #98989d;
+}
+
+page.dark .empty {
+  color: #98989d;
+}
+
+/* Dark mode for add page */
+page.dark .search-box,
+page.dark .quick-scroll,
+page.dark .quick-list,
+page.dark .quick-item,
+page.dark .nav-spacer {
+  background-color: #1e1e20;
+}
+
+page.dark .search-input {
+  background-color: #1e1e20;
+  color: #e8e8e8;
+}
+
+page.dark .nav-title,
+page.dark .section-title,
+page.dark .input-label,
+page.dark .picker-value {
+  color: #e8e8e8;
+}
+
+page.dark .quick-label,
+page.dark .placeholder-text {
+  color: #98989d;
+}
+
+/* Dark mode for stats page */
+page.dark .header-section,
+page.dark .hero-card,
+page.dark .category-card,
+page.dark .top-item,
+page.dark .empty-state {
+  background-color: #1e1e20;
+}
+
+page.dark .header-title,
+page.dark .header-date,
+page.dark .hero-label,
+page.dark .hero-amount,
+page.dark .tab-btn {
+  color: #e8e8e8;
+}
+
+/* Dark mode for detail page */
+page.dark .header,
+page.dark .info-card,
+page.dark .progress-section,
+page.dark .history-list {
+  background-color: #1e1e20;
+}
+
+page.dark .service-name,
+page.dark .info-label,
+page.dark .info-value {
+  color: #e8e8e8;
+}
+
+/* Dark mode for edit page */
+page.dark .cycle-options,
+page.dark .input-row,
+page.dark .date-row {
+  background-color: #1e1e20;
+}
+
+.container.dark {
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
 
 .container {
   min-height: 100vh;
@@ -182,4 +398,16 @@ button {
 
 .list-item, .date-picker {
   border-bottom: 1px solid var(--outline-variant);
+}
+
+.theme-switch {
+  transform: scale(0.9);
+}
+
+switch .wx-switch-handle {
+  background-color: var(--surface-container-low) !important;
+}
+
+switch[checked] .wx-switch-handle {
+  background-color: var(--primary-container) !important;
 }

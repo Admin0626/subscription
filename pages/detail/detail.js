@@ -3,6 +3,7 @@ const util = require('../../utils/util.js');
 
 Page({
   data: {
+    pageClass: '',
     subscription: null,
     nextDate: '',
     daysUsed: 0,
@@ -16,6 +17,7 @@ Page({
   },
 
   onLoad(options) {
+    this.syncTheme();
     const id = options.id;
 
     if (!id) {
@@ -78,6 +80,15 @@ Page({
       displayHistory,
       hasMoreHistory
     });
+  },
+
+  onShow() {
+    this.syncTheme();
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ pageClass: theme === 'dark' ? 'dark' : '' });
   },
 
   formatDateFull(date) {

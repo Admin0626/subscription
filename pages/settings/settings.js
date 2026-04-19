@@ -3,6 +3,8 @@ const util = require('../../utils/util.js');
 
 Page({
   data: {
+    pageClass: '',
+    theme: 'light',
     stats: { activeCount: 0, totalSpent: 0 },
     showDatePicker: false,
     dateRangeType: 'all',
@@ -11,7 +13,12 @@ Page({
     pickerRange: []
   },
 
+  onLoad() {
+    this.syncTheme();
+  },
+
   onShow() {
+    this.syncTheme();
     const subs = app.globalData.subscriptions || [];
     const totalSpent = subs.reduce((sum, item) => {
       const monthly = item.cycle === 'monthly' ? item.price : item.price / 12;
@@ -22,6 +29,18 @@ Page({
       'stats.activeCount': subs.length,
       'stats.totalSpent': totalSpent.toFixed(2)
     });
+  },
+
+  syncTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    this.setData({ theme, pageClass: theme === 'dark' ? 'dark' : '' });
+  },
+
+  onToggleTheme() {
+    const theme = app.getEffectiveTheme ? app.getEffectiveTheme() : 'light';
+    const newMode = theme === 'dark' ? 'light' : 'dark';
+    app.setThemeMode(newMode);
+    this.setData({ theme: newMode, pageClass: newMode === 'dark' ? 'dark' : '' });
   },
 
   onExportData() {
