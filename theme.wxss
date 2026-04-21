@@ -119,6 +119,24 @@ page.dark .tab-btn.active {
   color: #ffffff;
 }
 
+page.dark .donut-hole {
+  background-color: #2c2c2e;
+}
+
+page.dark .donut-num {
+  color: #000000;
+}
+
+page.dark .donut-label {
+  color: #e8e8e8;
+}
+
+page.dark .legend-name,
+page.dark .legend-value,
+page.dark .legend-percent {
+  color: #e8e8e8;
+}
+
 /* Dark mode child elements */
 page.dark .stats-row,
 page.dark .list-group,
@@ -230,11 +248,24 @@ page.dark .info-value {
   color: #e8e8e8;
 }
 
-/* Dark mode for edit page */
+/* Dark mode for edit/add page */
 page.dark .cycle-options,
 page.dark .input-row,
-page.dark .date-row {
-  background-color: #1e1e20;
+page.dark .date-row,
+page.dark .search-box,
+page.dark .quick-scroll,
+page.dark .quick-list,
+page.dark .quick-item,
+page.dark .cycle-picker {
+  background-color: #2c2c2e;
+}
+
+page.dark .quick-label,
+page.dark .quick-initial,
+page.dark .input-label,
+page.dark .cost-prefix,
+page.dark .placeholder-text {
+  color: #b0b0b0;
 }
 
 .container.dark {

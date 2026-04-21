@@ -21,7 +21,7 @@
         <view class="quick-list">
           <view class="quick-item {{selectedService === item.name ? 'selected' : ''}}" wx:for="{{quickServices}}" wx:key="name" bindtap="selectQuickService" data-item="{{item}}">
             <image class="quick-logo-img" src="{{item.logoUrl || ''}}" mode="aspectFit" wx:if="{{item.logoUrl && item.logoUrl !== ''}}"></image>
-            <view class="quick-logo" style="background-color: {{item.bgColor || '#f1f1f1'}}" wx:if="{{!item.logoUrl || item.logoUrl === ''}}">
+            <view class="quick-logo" style="background-color: {{pageClass ? item.bgColor || '#2c2c2e' : item.bgColor || '#f1f1f1'}}" wx:if="{{!item.logoUrl || item.logoUrl === ''}}">
               <text class="quick-initial">{{item.label[0]}}</text>
             </view>
             <text class="quick-label">{{item.label}}</text>
